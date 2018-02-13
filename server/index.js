@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cors = require('cors');
 const checkForSession = require('./middlewares/checkForSession');
 const swag_controller = require('./controllers/swag_controllers');
 const auth_controller = require('./controllers/auth_controller');
@@ -12,6 +13,8 @@ require ('dotenv').config();
 
 const app = express();
 
+app.use(cors());
+app.use(express.static(`${__dirname}/../build/`));
 app.use(bodyParser.json());
 app.use( session({
     secret: process.env.SESSION_SECRET,
