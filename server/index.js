@@ -6,6 +6,7 @@ const checkForSession = require('./middlewares/checkForSession');
 const swag_controller = require('./controllers/swag_controllers');
 const auth_controller = require('./controllers/auth_controller');
 const cart_controller = require('./controllers/cart_controller');
+const search_controller = require('./controllers/search_controller');
 require ('dotenv').config();
 
 
@@ -27,6 +28,7 @@ app.get('/api/user', auth_controller.getUser);
 app.post('/api/cart', cart_controller.add);
 app.post('/api/cart/checkout', cart_controller.checkout);
 app.delete('/api/cart', cart_controller.delete);
+app.get('/api/search', search_controller.search)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {console.log(`Server listening on port ${port}.`)});
